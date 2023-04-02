@@ -1,0 +1,17 @@
+version: '3.1'
+# Взято из докера: projectairws/greenplum
+# Параметры stdin_open и tty нужны, чтобы контейнер сразу не останавливался
+# Предаврительно создан storage "gpdata" для хранения данных серверов
+services:
+  greenplum:
+      image: alexsuf/gp 
+      restart: always
+      ports:
+       - 54321:5432
+      stdin_open: true
+      tty: true
+      volumes:
+       - gpdata:/gpdata
+volumes:
+  gpdata:
+    external: true
